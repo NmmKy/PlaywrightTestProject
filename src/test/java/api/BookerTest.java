@@ -30,6 +30,7 @@ public class BookerTest extends BaseTest {
     private final String createdCheckout = new SimpleDateFormat("yyyy-MM-dd").format(faker.date()
             .future(1, TimeUnit.DAYS));
     private final String createdAdditionalNeeds = faker.letterify("?????????");
+    private final String regEx = "^\"|\"$";
 
     @Test
     public void healthCheckTest() {
@@ -80,15 +81,15 @@ public class BookerTest extends BaseTest {
         String bookingId = bookingObject.get("bookingid").toString();
         JsonObject booking = bookingObject.getAsJsonObject("booking");
 
-        String firstName = booking.get("firstname").toString().replaceAll("^\"|\"$", "");
-        String lastName = booking.get("lastname").toString().replaceAll("^\"|\"$", "");
-        String totalPrice = booking.get("totalprice").toString().replaceAll("^\"|\"$", "");
-        String depositPaid = booking.get("depositpaid").toString().replaceAll("^\"|\"$", "");
+        String firstName = booking.get("firstname").toString().replaceAll(regEx, "");
+        String lastName = booking.get("lastname").toString().replaceAll(regEx, "");
+        String totalPrice = booking.get("totalprice").toString().replaceAll(regEx, "");
+        String depositPaid = booking.get("depositpaid").toString().replaceAll(regEx, "");
 
         JsonObject bookingDates = booking.get("bookingdates").getAsJsonObject();
-        String checkin = bookingDates.get("checkin").toString().replaceAll("^\"|\"$", "");
-        String checkout = bookingDates.get("checkout").toString().replaceAll("^\"|\"$", "");
-        String additionalNeeds = booking.get("additionalneeds").toString().replaceAll("^\"|\"$", "");
+        String checkin = bookingDates.get("checkin").toString().replaceAll(regEx, "");
+        String checkout = bookingDates.get("checkout").toString().replaceAll(regEx, "");
+        String additionalNeeds = booking.get("additionalneeds").toString().replaceAll(regEx, "");
 
         assertFalse(bookingId.isEmpty(), "Поле bookingId пустое");
         assertEquals(createdFirstName, firstName, "Поле firstname не ожидаемое");
@@ -117,15 +118,15 @@ public class BookerTest extends BaseTest {
 
         responseBody = apiResponse.text();
         JsonObject booking = JsonParser.parseString(responseBody).getAsJsonObject();
-        String firstName = booking.get("firstname").toString().replaceAll("^\"|\"$", "");
-        String lastName = booking.get("lastname").toString().replaceAll("^\"|\"$", "");
-        String totalPrice = booking.get("totalprice").toString().replaceAll("^\"|\"$", "");
-        String depositPaid = booking.get("depositpaid").toString().replaceAll("^\"|\"$", "");
+        String firstName = booking.get("firstname").toString().replaceAll(regEx, "");
+        String lastName = booking.get("lastname").toString().replaceAll(regEx, "");
+        String totalPrice = booking.get("totalprice").toString().replaceAll(regEx, "");
+        String depositPaid = booking.get("depositpaid").toString().replaceAll(regEx, "");
 
         JsonObject bookingDates = booking.get("bookingdates").getAsJsonObject();
-        String checkin = bookingDates.get("checkin").toString().replaceAll("^\"|\"$", "");
-        String checkout = bookingDates.get("checkout").toString().replaceAll("^\"|\"$", "");
-        String additionalNeeds = booking.get("additionalneeds").toString().replaceAll("^\"|\"$", "");
+        String checkin = bookingDates.get("checkin").toString().replaceAll(regEx, "");
+        String checkout = bookingDates.get("checkout").toString().replaceAll(regEx, "");
+        String additionalNeeds = booking.get("additionalneeds").toString().replaceAll(regEx, "");
 
         assertFalse(firstName.isEmpty(), "Поле firstname пустое");
         assertFalse(lastName.isEmpty(), "Поле lastname пустое");
@@ -165,15 +166,15 @@ public class BookerTest extends BaseTest {
 
         responseBody = apiResponse.text();
         JsonObject booking = JsonParser.parseString(responseBody).getAsJsonObject();
-        String firstName = booking.get("firstname").toString().replaceAll("^\"|\"$", "");
-        String lastName = booking.get("lastname").toString().replaceAll("^\"|\"$", "");
-        String totalPrice = booking.get("totalprice").toString().replaceAll("^\"|\"$", "");
-        String depositPaid = booking.get("depositpaid").toString().replaceAll("^\"|\"$", "");
+        String firstName = booking.get("firstname").toString().replaceAll(regEx, "");
+        String lastName = booking.get("lastname").toString().replaceAll(regEx, "");
+        String totalPrice = booking.get("totalprice").toString().replaceAll(regEx, "");
+        String depositPaid = booking.get("depositpaid").toString().replaceAll(regEx, "");
 
         JsonObject bookingDates = booking.get("bookingdates").getAsJsonObject();
-        String checkin = bookingDates.get("checkin").toString().replaceAll("^\"|\"$", "");
-        String checkout = bookingDates.get("checkout").toString().replaceAll("^\"|\"$", "");
-        String additionalNeeds = booking.get("additionalneeds").toString().replaceAll("^\"|\"$", "");
+        String checkin = bookingDates.get("checkin").toString().replaceAll(regEx, "");
+        String checkout = bookingDates.get("checkout").toString().replaceAll(regEx, "");
+        String additionalNeeds = booking.get("additionalneeds").toString().replaceAll(regEx, "");
 
         assertEquals(createdFirstName, firstName, "Поле firstname не ожидаемое");
         assertEquals(createdLastName, lastName, "Поле lastname пустое");
@@ -217,8 +218,8 @@ public class BookerTest extends BaseTest {
 
         responseBody = apiResponse.text();
         JsonObject booking = JsonParser.parseString(responseBody).getAsJsonObject();
-        String firstName = booking.get("firstname").toString().replaceAll("^\"|\"$", "");
-        String lastName = booking.get("lastname").toString().replaceAll("^\"|\"$", "");
+        String firstName = booking.get("firstname").toString().replaceAll(regEx, "");
+        String lastName = booking.get("lastname").toString().replaceAll(regEx, "");
         assertEquals(createdFirstName, firstName, "Поле firstname не ожидаемое");
         assertEquals(createdLastName, lastName, "Поле lastname не ожидаемое");
     }
